@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="MappingExample"
+                   namespace="MappingExample">
+
+    <class name="Employee" table="Employees" >
+        <id name="EmployeeID" column="employeeID">
+            <generator class="identity" />
+        </id>
+        <discriminator column="discriminator" type="string"/>
+
+        <property name="Name" column="name" />
+        <property name="Username" column="username" />
+        <property name="PhoneNumber" column="phoneNumber" />
+
+        <many-to-one class="Address" name="Address" column="addressID" lazy="proxy"/>
+
+        <subclass name="SalariedEmployee" discriminator-value="S         ">
+            <property name="PayGrade" column="payGrade"/>
+        </subclass>
+
+        <subclass name="HourlyPaidEmployee" discriminator-value="H         ">
+        </subclass>
+
+    </class>
+
+</hibernate-mapping>

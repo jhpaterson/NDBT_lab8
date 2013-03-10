@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="MappingExample"
+                   namespace="MappingExample">
+
+    <class name="Address" table="Addresses" >
+        <id name="AddressID" column="addressID">
+            <generator class="identity" />
+        </id>
+
+        <property name="PropertyName" column="propertyName" />
+        <property name="PropertyNumber" column="propertyNumber" />
+        <property name="PostCode" column="postCode" />
+
+        <bag name="Employees" lazy="true">
+            <key column="addressId"/>
+            <one-to-many
+               class="Employee" />
+        </bag>
+    </class>
+
+</hibernate-mapping>
+
